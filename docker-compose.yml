@@ -46,7 +46,6 @@ services:
         depends_on:
             - database_primary
         environment:
-            - MONGODB_ADVERTISED_HOSTNAME=database_secondary
             - MONGODB_REPLICA_SET_MODE=secondary
             - MONGODB_PRIMARY_HOST=database_primary
             - MONGODB_PRIMARY_PORT_NUMBER=27017
@@ -67,7 +66,6 @@ services:
         depends_on:
          - database_primary
         environment:
-            - MONGODB_ADVERTISED_HOSTNAME=database_arbiter
             - MONGODB_REPLICA_SET_MODE=arbiter
             - MONGODB_PRIMARY_HOST=database_primary
             - MONGODB_PRIMARY_PORT_NUMBER=27017
