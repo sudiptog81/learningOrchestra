@@ -111,7 +111,7 @@ services:
                 condition: on-failure
             placement:
                 constraints:
-                    - "node.role==worker"
+                    - "node.role==manager"
 
 networks:
     database:
