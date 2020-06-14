@@ -7,8 +7,8 @@ RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | a
 
 RUN add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
-RUN apt update && \
-    apt install -y adoptopenjdk-8-hotspot
+RUN apt-get update && \
+    apt-get install -y adoptopenjdk-8-hotspot
 
 
 WORKDIR /usr/src/projection
