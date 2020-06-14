@@ -1,4 +1,4 @@
-FROM python:3.5
+FROM python:3.7-alpine
 
 RUN apt update && \
     apt install -y apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
