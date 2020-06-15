@@ -55,7 +55,7 @@ docker push $frontend_repository:$frontend_tag
 
 
 spark_repository=127.0.0.1:5050/spark
-spark_tag=2.4.5
+spark_tag=spark
 
 echo "--------------------------------------------------------------------"
 echo "Pushing spark service image..."

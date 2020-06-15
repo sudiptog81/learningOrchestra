@@ -1,15 +1,10 @@
-FROM spark:2.4.5
-
-RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk autossh python3-pip && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+FROM 127.0.0.1:5050/spark:spark
 
 
 WORKDIR /usr/src/projection
 COPY . /usr/src/projection
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 RUN pyspark --packages org.mongodb.spark:mongo-spark-connector_2.11:2.4.1
 
 ENV PROJECTION_HOST_NAME "projection"
@@ -27,8 +22,6 @@ ENV HADOOP_VERSION 2.7
 ENV PYSPARK_PYTHON python3
 ENV PYSPARK_DRIVER_PYTHON python3
 
-RUN curl -s http://mirror.synyx.de/apache/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION.tgz | tar -xz -C $SPARK_INSTALL && \
-    cd $SPARK_INSTALL && ln -s spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION spark
 
 RUN pyspark --packages org.mongodb.spark:mongo-spark-connector_2.11:2.4.1
 CMD ["python", "server.py"]
