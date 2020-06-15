@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM phusion/baseimage:18.04-1.0.0
 
 RUN apt update && \
     apt install -y apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
