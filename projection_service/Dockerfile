@@ -1,13 +1,9 @@
 FROM phusion/baseimage:18.04-1.0.0
 
-RUN apt update && \
-    apt install -y apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
-
-RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
-
-RUN add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-
-RUN apt install -y adoptopenjdk-8-hotspot
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk autossh python3-pip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 WORKDIR /usr/src/projection
