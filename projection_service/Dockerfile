@@ -4,6 +4,7 @@ FROM 127.0.0.1:5050/spark:spark
 WORKDIR /usr/src/projection
 COPY . /usr/src/projection
 
+RUN pip3 install -U pip setuptools
 RUN pip3 install -r requirements.txt
 
 ENV PROJECTION_HOST_NAME "projection"
