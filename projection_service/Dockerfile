@@ -1,4 +1,4 @@
-FROM phusion/baseimage:18.04-1.0.0
+FROM spark:2.4.5
 
 RUN apt-get update && \
     apt-get install -y openjdk-8-jdk autossh python3-pip && \

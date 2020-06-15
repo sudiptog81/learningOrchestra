@@ -142,7 +142,7 @@ services:
 
     sparkmaster:
         build: ./spark_service
-        image: 127.0.0.1:5050/spark:spark
+        image: spark:2.4.5
         ports:
             - 4040:4040
             - 7077:7077
@@ -161,7 +161,7 @@ services:
             - database
 
     sparkworker:
-        image: 127.0.0.1:5050/spark:spark
+        image: spark:2.4.5
         entrypoint: dockerize -wait tcp://sparkmaster:7077 -timeout 240s /sbin/my_init
         ports:
             - 8081:8081
