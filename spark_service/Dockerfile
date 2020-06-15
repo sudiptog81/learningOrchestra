@@ -14,6 +14,7 @@ ENV PYSPARK_DRIVER_PYTHON python3
 RUN apt-get update && \
     apt-get install -y --no-install-recommends openjdk-8-jdk autossh python3-pip && \
     apt-get clean && \
+    apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN curl -L -O https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
