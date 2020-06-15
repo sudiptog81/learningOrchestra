@@ -5,7 +5,6 @@ WORKDIR /usr/src/projection
 COPY . /usr/src/projection
 
 RUN pip3 install -r requirements.txt
-RUN pyspark --packages org.mongodb.spark:mongo-spark-connector_2.11:2.4.1
 
 ENV PROJECTION_HOST_NAME "projection"
 ENV PROJECTION_HOST_PORT 5001
@@ -22,6 +21,4 @@ ENV HADOOP_VERSION 2.7
 ENV PYSPARK_PYTHON python3
 ENV PYSPARK_DRIVER_PYTHON python3
 
-
-RUN pyspark --packages org.mongodb.spark:mongo-spark-connector_2.11:2.4.1
-CMD ["python", "server.py"]
+CMD ["python3", "server.py"]
