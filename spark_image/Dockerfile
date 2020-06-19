@@ -1,7 +1,7 @@
 FROM phusion/baseimage:18.04-1.0.0
 
 RUN apt-get update && \
-    apt-get install --no-install-recommends -y openjdk-8-jdk autossh python3-pip && 
+    apt-get install --no-install-recommends -y openjdk-8-jdk autossh python3-pip
 
 
 ENV SPARK_VERSION 2.4.5
