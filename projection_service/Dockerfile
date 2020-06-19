@@ -1,4 +1,4 @@
-FROM  bitnami/python:3.6
+FROM  python:3.6
 
 WORKDIR /usr/src/projection
 COPY . /usr/src/projection
