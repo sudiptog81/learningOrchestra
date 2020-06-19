@@ -1,5 +1,8 @@
 FROM  bitnami/python:3.6
 
+WORKDIR /usr/src/projection
+COPY . /usr/src/projection
+
 RUN apt-get update && \
     apt-get install --no-install-recommends -y apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
 
@@ -9,10 +12,6 @@ RUN add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y adoptopenjdk-8-hotspot 
-
-
-WORKDIR /usr/src/projection
-COPY . /usr/src/projection
 
 RUN pip install -r requirements.txt
 
