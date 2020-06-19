@@ -5,10 +5,12 @@ echo "--------------------------------------------------------------------"
 echo "Buiding own images service..."
 echo "--------------------------------------------------------------------"
 
-docker-compose build
-
 docker build --tag spark_image ./spark_image
 docker push 127.0.0.1:5050/spark_image
+
+docker-compose build
+
+
 
 echo "--------------------------------------------------------------------"
 echo "Adding the image service in docker daemon security exception..."
