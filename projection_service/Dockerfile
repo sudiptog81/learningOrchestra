@@ -1,7 +1,7 @@
 FROM python:3.6-slim
 
 RUN apt-get update && \
-    apt-get install --no-install-recommends -y software-properties-common
+    apt-get install --no-install-recommends -y apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
 
 RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
 
