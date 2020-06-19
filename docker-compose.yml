@@ -183,8 +183,7 @@ services:
             - database
 
     projection:
-        build: ./projection_service
-        image: 127.0.0.1:5050/projection:projection
+        image: 127.0.0.1:5050/spark_task
         ports:
             - "5001:5001"
             - 41000:41000

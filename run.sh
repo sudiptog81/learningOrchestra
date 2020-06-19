@@ -7,6 +7,9 @@ echo "--------------------------------------------------------------------"
 
 docker-compose build
 
+docker build --tag spark_task ./spark_task_image
+docker push 127.0.0.1:5050/spark_task
+
 echo "--------------------------------------------------------------------"
 echo "Adding the image service in docker daemon security exception..."
 echo "--------------------------------------------------------------------"
