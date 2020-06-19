@@ -1,4 +1,4 @@
-FROM 127.0.0.1:5050/spark_image
+FROM spark_image
 
 ENV SPARK_INSTALL /usr/local
 ENV SPARK_HOME $SPARK_INSTALL/spark

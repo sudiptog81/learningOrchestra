@@ -1,4 +1,4 @@
-FROM  127.0.0.1:5050/spark_image
+FROM  spark_image
 
 WORKDIR /usr/src/projection
 COPY . /usr/src/projection
