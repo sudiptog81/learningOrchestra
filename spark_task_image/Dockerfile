@@ -1,5 +1,8 @@
 FROM  python:3.6
 
+WORKDIR /usr/src/spark_task
+COPY . /usr/src/spark_task
+
 RUN apt-get update && \
     apt-get install --no-install-recommends -y apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
 
