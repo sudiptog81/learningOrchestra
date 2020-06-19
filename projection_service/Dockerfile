@@ -3,7 +3,7 @@ FROM  spark_image
 WORKDIR /usr/src/projection
 COPY . /usr/src/projection
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 ENV PROJECTION_HOST_NAME "projection"
 ENV PROJECTION_HOST_PORT 5001
