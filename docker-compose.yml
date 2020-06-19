@@ -183,7 +183,7 @@ services:
             - database
 
     projection:
-        image: 127.0.0.1:5050/spark_task
+        image: 127.0.0.1:5050/spark_image
         ports:
             - "5001:5001"
             - 41000:41000
