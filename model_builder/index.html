@@ -425,19 +425,19 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#handy-methods" class="md-nav__link">
-    Handy methods
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#preprocessor_code-environment" class="md-nav__link">
     preprocessor_code environment
   </a>
   
     <nav class="md-nav" aria-label="preprocessor_code environment">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handy-methods" class="md-nav__link">
+    Handy methods
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#preprocessor_code-example" class="md-nav__link">
@@ -514,19 +514,19 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#handy-methods" class="md-nav__link">
-    Handy methods
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#preprocessor_code-environment" class="md-nav__link">
     preprocessor_code environment
   </a>
   
     <nav class="md-nav" aria-label="preprocessor_code environment">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handy-methods" class="md-nav__link">
+    Handy methods
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#preprocessor_code-example" class="md-nav__link">
@@ -594,14 +594,6 @@
     <span class="nt">&quot;classificators_list&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="s2">&quot;nb&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<h3 id="handy-methods">Handy methods</h3>
-<p><div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">fields_from_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">is_string</span><span class="p">)</span>
-</code></pre></div>
-This method return string or number fields as string list from a dataframe</p>
-<ul>
-<li>dataframe: dataframe instance</li>
-<li>is_string: Boolean parameter, if True, the method return the string dataframe fields, otherwise, return the numbers dataframe fields.</li>
-</ul>
 <h3 id="preprocessor_code-environment">preprocessor_code environment</h3>
 <p>The python3 preprocessing code must use the environment instances in bellow:</p>
 <ul>
@@ -615,6 +607,14 @@ This method return string or number fields as string list from a dataframe</p>
 <li>features_testing (Not Instanciated): Spark Dataframe instance for test the model</li>
 </ul>
 <p>Case you don't want evaluate the model prediction, define features_evaluation as None.</p>
+<h4 id="handy-methods">Handy methods</h4>
+<p><div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">fields_from_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">is_string</span><span class="p">)</span>
+</code></pre></div>
+This method return string or number fields as string list from a dataframe</p>
+<ul>
+<li>dataframe: dataframe instance</li>
+<li>is_string: Boolean parameter, if True, the method return the string dataframe fields, otherwise, return the numbers dataframe fields.</li>
+</ul>
 <h4 id="preprocessor_code-example">preprocessor_code example</h4>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">sf</span>
