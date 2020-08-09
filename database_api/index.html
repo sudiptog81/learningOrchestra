@@ -600,10 +600,10 @@
 <h2 id="gui-tool-to-handle-database-files">GUI tool to handle database files</h2>
 <p>There are GUI tools to handle database files, as example, the <a href="https://nosqlbooster.com">NoSQLBooster</a> can interact with mongoDB used in database, and make several tasks which are limited in learning_orchestra_client package, as  schema visualization and files extraction and download to formats as csv, json, you also can navigate in all inserted files in easy way and visualize each row from determined file, to use this tool, connect with the url cluster_ip:27017 and use the user root with password owl45#21.</p>
 <h2 id="list-all-inserted-files">List all inserted files</h2>
-<p><code>GET IP:5000/files</code></p>
+<p><code>GET CLUSTER_IP:5000/files</code></p>
 <p>Return an array of metadata files in database, each file inserted in database contains a metadata file.</p>
 <h3 id="downloaded-files-metadata">Downloaded files metadata</h3>
-<p><div class="highlight"><pre><span></span><code><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">&quot;PassengerId&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Survived&quot;</span><span class="p">,</span>
@@ -624,13 +624,16 @@
     <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://filebin.net/rpfdy8clm5984a4c/titanic_training.csv?t=gcnjz1yo&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
-* fields - column names from inserted file
-* filename - name to file identification
-* finished - flag used to indicate if asyncronous processing from file downloader is finished
-* time_created - creation time of file
-* url - url used to file download</p>
+
+<ul>
+<li>fields - column names from inserted file</li>
+<li>filename - name to file identification</li>
+<li>finished - flag used to indicate if asyncronous processing from file downloader is finished</li>
+<li>time_created - creation time of file</li>
+<li>url - url used to file download</li>
+</ul>
 <h3 id="preprocessed-files-metadata">Preprocessed files metadata</h3>
-<p><div class="highlight"><pre><span></span><code><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">&quot;PassengerId&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Survived&quot;</span><span class="p">,</span>
@@ -648,9 +651,12 @@
     <span class="nt">&quot;time_created&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-07-28T12:01:44-00:00&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
-* parent_filename - file filename used to make preprocessing operation</p>
+
+<ul>
+<li>parent_filename - file filename used to make preprocessing operation</li>
+</ul>
 <h3 id="classificator-prediction-files-metadata">Classificator prediction files metadata</h3>
-<p><div class="highlight"><pre><span></span><code><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;accuracy&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
     <span class="nt">&quot;classificator&quot;</span><span class="p">:</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span>
     <span class="nt">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span>
@@ -658,12 +664,15 @@
     <span class="nt">&quot;fit_time&quot;</span><span class="p">:</span> <span class="mf">69.43671989440918</span>
 <span class="p">}</span>
 </code></pre></div>
-* accuracy - accuracy rate from model prediction
-* classificator - initials from used classificator
-* error - error rate from model prediction
-* fit_time - time from model fit using training dataset</p>
+
+<ul>
+<li>accuracy - accuracy rate from model prediction</li>
+<li>classificator - initials from used classificator</li>
+<li>error - error rate from model prediction</li>
+<li>fit_time - time from model fit using training dataset</li>
+</ul>
 <h2 id="list-file-content">List file content</h2>
-<p><code>GET IP:5000/files/&lt;filename&gt;?skip=number&amp;limit=number&amp;query={}</code></p>
+<p><code>GET CLUSTER_IP:5000/files/&lt;filename&gt;?skip=number&amp;limit=number&amp;query={}</code></p>
 <p>Return rows of filename, and paginate in query result</p>
 <ul>
 <li>filename - filename of inserted file</li>
@@ -673,7 +682,7 @@
 </ul>
 <p>The first row is always the metadata file</p>
 <h2 id="insert-file-from-url">Insert file from URL</h2>
-<p><code>POST IP:5000/files</code></p>
+<p><code>POST CLUSTER_IP:5000/files</code></p>
 <p>Insert a csv into the database using the POST method, json must be contained in the body of the http request.
 The inserted json must has the fields: 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -682,7 +691,7 @@ The inserted json must has the fields:
 <span class="p">}</span>
 </code></pre></div></p>
 <h2 id="delete-inserted-file">Delete inserted file</h2>
-<p><code>DELETE IP:5000/files/&lt;filename&gt;</code></p>
+<p><code>DELETE CLUSTER_IP:5000/files/&lt;filename&gt;</code></p>
 <p>Request of type DELETE, informing the value of filename field of a inserted file in argument request, deleting the database file, if one exist with that value.</p>
                 
               

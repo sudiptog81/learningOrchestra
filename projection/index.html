@@ -488,7 +488,7 @@
                 <h1 id="projection-microservice">Projection microservice</h1>
 <p>Projection microservice provide an api to make a projection from file inserted in database service, generating a new file and putting in database</p>
 <h2 id="create-projection-from-inserted-file">Create projection from inserted file</h2>
-<p><code>POST IP:5001/projections/&lt;filename&gt;</code></p>
+<p><code>POST CLUSTER_IP:5001/projections/&lt;filename&gt;</code></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;projection_filename&quot;</span> <span class="p">:</span> <span class="s2">&quot;filename_to_save_projection&quot;</span><span class="p">,</span>
     <span class="nt">&quot;fields&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;list&quot;</span><span class="p">,</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="s2">&quot;fields&quot;</span><span class="p">]</span>

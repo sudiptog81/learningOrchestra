@@ -488,7 +488,7 @@
                 <h1 id="data-type-handler-microservice">Data Type Handler microservice</h1>
 <p>Microservice used to change data type from stored file between number and string</p>
 <h2 id="change-fields-type-of-inserted-file">Change fields type of inserted file</h2>
-<p><code>PATCH IP:5003/fieldtypes/&lt;filename&gt;</code></p>
+<p><code>PATCH CLUSTER_IP:5003/fieldtypes/&lt;filename&gt;</code></p>
 <p>The request use filename as id in argument and fields in body, fields are an array whith all fields from file to be changed, using number or string descriptor in each Key:Value to describe the new value of altered field of file.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;field1&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
