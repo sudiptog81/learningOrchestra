@@ -500,10 +500,9 @@
                 <h1 id="histogram-microservice">Histogram microservice</h1>
 <p>Microservice used to make the histogram from stored file, storing the result in a new file in MongoDB.</p>
 <h2 id="create-an-histogram-from-inserted-file">Create an Histogram from inserted file</h2>
-<p><code>POST CLUSTER_IP:5004/histograms</code></p>
-<p>The request is sent in body, the filename is the file to be maked the histogram, histrogram_filename is the filename to save the histogram result and fields are an array whith all fields to be maked the histogram.</p>
+<p><code>POST CLUSTER_IP:5004/histograms/&lt;filename&gt;</code></p>
+<p>The request is sent in body, histrogram_filename is the filename to save the histogram result and fields are an array whith all fields to be maked the histogram.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;filename_to_make_histogram&quot;</span><span class="p">,</span>
     <span class="nt">&quot;histogram_filename&quot;</span><span class="p">:</span> <span class="s2">&quot;filename_to_save_the_histogram&quot;</span><span class="p">,</span>
     <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;fields&quot;</span><span class="p">,</span> <span class="s2">&quot;from&quot;</span><span class="p">,</span> <span class="s2">&quot;filename&quot;</span><span class="p">]</span>
 <span class="p">}</span>
