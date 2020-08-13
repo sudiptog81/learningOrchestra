@@ -884,7 +884,6 @@
 <li>"rf": RandomForestClassifier</li>
 <li>"gb": Gradient-boosted tree classifier</li>
 <li>"nb": NaiveBayes</li>
-<li>"svc": Support Vector Machine</li>
 </ul>
 <p>to send a request with LogisticRegression and NaiveBayes classificators:</p>
 <div class="highlight"><pre><span></span><code><span class="n">create_model</span><span class="p">(</span><span class="n">training_filename</span><span class="p">,</span> <span class="n">test_filename</span><span class="p">,</span> <span class="n">preprocessor_code</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="s2">&quot;nb&quot;</span><span class="p">])</span>
@@ -957,61 +956,95 @@
 
 <span class="n">preprocessing_code</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">from pyspark.ml import Pipeline</span>
-<span class="s1">from pyspark.sql import functions as sf</span>
-<span class="s1">from pyspark.sql.functions import mean,col,split, col, regexp_extract, when, lit</span>
-<span class="s1">from pyspark.ml.feature import VectorAssembler, StringIndexer, QuantileDiscretizer</span>
+<span class="s1">from pyspark.sql.functions import (</span>
+<span class="s1">    mean, col, split,</span>
+<span class="s1">    regexp_extract, when, lit)</span>
 
-<span class="s1">training_df = training_df.withColumn(&quot;Initial&quot;,regexp_extract(col(&quot;Name&quot;),&quot;([A-Za-z]+)\.&quot;,1))</span>
+<span class="s1">from pyspark.ml.feature import (</span>
+<span class="s1">    VectorAssembler,</span>
+<span class="s1">    StringIndexer</span>
+<span class="s1">)</span>
+
+<span class="s1">TRAINING_DF_INDEX = 0</span>
+<span class="s1">TESTING_DF_INDEX = 1</span>
+
 <span class="s1">training_df = training_df.withColumnRenamed(&#39;Survived&#39;, &#39;label&#39;)</span>
-<span class="s1">training_df = training_df.replace([&#39;Mlle&#39;,&#39;Mme&#39;, &#39;Ms&#39;, &#39;Dr&#39;,&#39;Major&#39;,&#39;Lady&#39;,&#39;Countess&#39;,&#39;Jonkheer&#39;,&#39;Col&#39;,&#39;Rev&#39;,&#39;Capt&#39;,&#39;Sir&#39;,&#39;Don&#39;],</span>
-<span class="s1">            [&#39;Miss&#39;,&#39;Miss&#39;,&#39;Miss&#39;,&#39;Mr&#39;,&#39;Mr&#39;,  &#39;Mrs&#39;,  &#39;Mrs&#39;,  &#39;Other&#39;,  &#39;Other&#39;,&#39;Other&#39;,&#39;Mr&#39;,&#39;Mr&#39;,&#39;Mr&#39;])</span>
+<span class="s1">testing_df = testing_df.withColumn(&#39;label&#39;, lit(0))</span>
+<span class="s1">datasets_list = [training_df, testing_df]</span>
 
-<span class="s1">testing_df = testing_df.withColumn(&quot;Initial&quot;,regexp_extract(col(&quot;Name&quot;),&quot;([A-Za-z]+)\.&quot;,1))</span>
-<span class="s1">testing_df = testing_df.replace([&#39;Mlle&#39;,&#39;Mme&#39;, &#39;Ms&#39;, &#39;Dr&#39;,&#39;Major&#39;,&#39;Lady&#39;,&#39;Countess&#39;,&#39;Jonkheer&#39;,&#39;Col&#39;,&#39;Rev&#39;,&#39;Capt&#39;,&#39;Sir&#39;,&#39;Don&#39;],</span>
-<span class="s1">            [&#39;Miss&#39;,&#39;Miss&#39;,&#39;Miss&#39;,&#39;Mr&#39;,&#39;Mr&#39;,  &#39;Mrs&#39;,  &#39;Mrs&#39;,  &#39;Other&#39;,  &#39;Other&#39;,&#39;Other&#39;,&#39;Mr&#39;,&#39;Mr&#39;,&#39;Mr&#39;])</span>
-
-<span class="s1">testing_df = testing_df.withColumn(&#39;label&#39;, sf.lit(0))</span>
-
-<span class="s1">training_df = training_df.withColumn(&quot;Age&quot;,when((training_df[&quot;Initial&quot;] == &quot;Miss&quot;) &amp; (training_df[&quot;Age&quot;].isNull()), 22).otherwise(training_df[&quot;Age&quot;]))</span>
-<span class="s1">training_df = training_df.withColumn(&quot;Age&quot;,when((training_df[&quot;Initial&quot;] == &quot;Other&quot;) &amp; (training_df[&quot;Age&quot;].isNull()), 46).otherwise(training_df[&quot;Age&quot;]))</span>
-<span class="s1">training_df = training_df.withColumn(&quot;Age&quot;,when((training_df[&quot;Initial&quot;] == &quot;Master&quot;) &amp; (training_df[&quot;Age&quot;].isNull()), 5).otherwise(training_df[&quot;Age&quot;]))</span>
-<span class="s1">training_df = training_df.withColumn(&quot;Age&quot;,when((training_df[&quot;Initial&quot;] == &quot;Mr&quot;) &amp; (training_df[&quot;Age&quot;].isNull()), 33).otherwise(training_df[&quot;Age&quot;]))</span>
-<span class="s1">training_df = training_df.withColumn(&quot;Age&quot;,when((training_df[&quot;Initial&quot;] == &quot;Mrs&quot;) &amp; (training_df[&quot;Age&quot;].isNull()), 36).otherwise(training_df[&quot;Age&quot;]))</span>
-
-<span class="s1">testing_df = testing_df.withColumn(&quot;Age&quot;,when((testing_df[&quot;Initial&quot;] == &quot;Miss&quot;) &amp; (testing_df[&quot;Age&quot;].isNull()), 22).otherwise(testing_df[&quot;Age&quot;]))</span>
-<span class="s1">testing_df = testing_df.withColumn(&quot;Age&quot;,when((testing_df[&quot;Initial&quot;] == &quot;Other&quot;) &amp; (testing_df[&quot;Age&quot;].isNull()), 46).otherwise(testing_df[&quot;Age&quot;]))</span>
-<span class="s1">testing_df = testing_df.withColumn(&quot;Age&quot;,when((testing_df[&quot;Initial&quot;] == &quot;Master&quot;) &amp; (testing_df[&quot;Age&quot;].isNull()), 5).otherwise(testing_df[&quot;Age&quot;]))</span>
-<span class="s1">testing_df = testing_df.withColumn(&quot;Age&quot;,when((testing_df[&quot;Initial&quot;] == &quot;Mr&quot;) &amp; (testing_df[&quot;Age&quot;].isNull()), 33).otherwise(testing_df[&quot;Age&quot;]))</span>
-<span class="s1">testing_df = testing_df.withColumn(&quot;Age&quot;,when((testing_df[&quot;Initial&quot;] == &quot;Mrs&quot;) &amp; (testing_df[&quot;Age&quot;].isNull()), 36).otherwise(testing_df[&quot;Age&quot;]))</span>
+<span class="s1">for index, dataset in enumerate(datasets_list):</span>
+<span class="s1">    dataset = dataset.withColumn(</span>
+<span class="s1">        &quot;Initial&quot;,</span>
+<span class="s1">        regexp_extract(col(&quot;Name&quot;), &quot;([A-Za-z]+)\.&quot;, 1))</span>
+<span class="s1">    datasets_list[index] = dataset</span>
 
 
-<span class="s1">training_df = training_df.na.fill({&quot;Embarked&quot; : &#39;S&#39;})</span>
-<span class="s1">training_df = training_df.drop(&quot;Cabin&quot;)</span>
-<span class="s1">training_df = training_df.withColumn(&quot;Family_Size&quot;,col(&#39;SibSp&#39;)+col(&#39;Parch&#39;))</span>
-<span class="s1">training_df = training_df.withColumn(&#39;Alone&#39;,lit(0))</span>
-<span class="s1">training_df = training_df.withColumn(&quot;Alone&quot;,when(training_df[&quot;Family_Size&quot;] == 0, 1).otherwise(training_df[&quot;Alone&quot;]))</span>
-
-<span class="s1">testing_df = testing_df.na.fill({&quot;Embarked&quot; : &#39;S&#39;})</span>
-<span class="s1">testing_df = testing_df.drop(&quot;Cabin&quot;)</span>
-<span class="s1">testing_df = testing_df.withColumn(&quot;Family_Size&quot;,col(&#39;SibSp&#39;)+col(&#39;Parch&#39;))</span>
-<span class="s1">testing_df = testing_df.withColumn(&#39;Alone&#39;,lit(0))</span>
-<span class="s1">testing_df = testing_df.withColumn(&quot;Alone&quot;,when(testing_df[&quot;Family_Size&quot;] == 0, 1).otherwise(testing_df[&quot;Alone&quot;]))</span>
-
-<span class="s1">for column in [&quot;Sex&quot;,&quot;Embarked&quot;,&quot;Initial&quot;]:</span>
-<span class="s1">    training_df = StringIndexer(inputCol=column, outputCol=column+&quot;_index&quot;).fit(training_df).transform(training_df)</span>
-<span class="s1">    testing_df = StringIndexer(inputCol=column, outputCol=column+&quot;_index&quot;).fit(testing_df).transform(testing_df)</span>
+<span class="s1">misspelled_initials = [&#39;Mlle&#39;, &#39;Mme&#39;, &#39;Ms&#39;, &#39;Dr&#39;, &#39;Major&#39;, &#39;Lady&#39;, &#39;Countess&#39;,</span>
+<span class="s1">                       &#39;Jonkheer&#39;, &#39;Col&#39;, &#39;Rev&#39;, &#39;Capt&#39;, &#39;Sir&#39;, &#39;Don&#39;]</span>
+<span class="s1">correct_initials = [&#39;Miss&#39;, &#39;Miss&#39;, &#39;Miss&#39;, &#39;Mr&#39;, &#39;Mr&#39;, &#39;Mrs&#39;, &#39;Mrs&#39;,</span>
+<span class="s1">                    &#39;Other&#39;, &#39;Other&#39;, &#39;Other&#39;, &#39;Mr&#39;, &#39;Mr&#39;, &#39;Mr&#39;]</span>
+<span class="s1">for index, dataset in enumerate(datasets_list):</span>
+<span class="s1">    dataset = dataset.replace(misspelled_initials, correct_initials)</span>
+<span class="s1">    datasets_list[index] = dataset</span>
 
 
-<span class="s1">training_df = training_df.drop(&quot;Name&quot;,&quot;Ticket&quot;,&quot;Cabin&quot;,&quot;Embarked&quot;,&quot;Sex&quot;,&quot;Initial&quot;)</span>
+<span class="s1">initials_age = {&quot;Miss&quot;: 22,</span>
+<span class="s1">                &quot;Other&quot;: 46,</span>
+<span class="s1">                &quot;Master&quot;: 5,</span>
+<span class="s1">                &quot;Mr&quot;: 33,</span>
+<span class="s1">                &quot;Mrs&quot;: 36}</span>
+<span class="s1">for index, dataset in enumerate(datasets_list):</span>
+<span class="s1">    for initial, initial_age in initials_age.items():</span>
+<span class="s1">        dataset = dataset.withColumn(</span>
+<span class="s1">            &quot;Age&quot;,</span>
+<span class="s1">            when((dataset[&quot;Initial&quot;] == initial) &amp;</span>
+<span class="s1">                 (dataset[&quot;Age&quot;].isNull()), initial_age).otherwise(</span>
+<span class="s1">                    dataset[&quot;Age&quot;]))</span>
+<span class="s1">        datasets_list[index] = dataset</span>
 
-<span class="s1">testing_df = testing_df.drop(&quot;Name&quot;,&quot;Ticket&quot;,&quot;Cabin&quot;,&quot;Embarked&quot;,&quot;Sex&quot;,&quot;Initial&quot;)</span>
 
-<span class="s1">assembler = VectorAssembler(inputCols=training_df.columns[1:],outputCol=&quot;features&quot;)</span>
+<span class="s1">for index, dataset in enumerate(datasets_list):</span>
+<span class="s1">    dataset = dataset.na.fill({&quot;Embarked&quot;: &#39;S&#39;})</span>
+<span class="s1">    datasets_list[index] = dataset</span>
+
+
+<span class="s1">for index, dataset in enumerate(datasets_list):</span>
+<span class="s1">    dataset = dataset.withColumn(&quot;Family_Size&quot;, col(&#39;SibSp&#39;)+col(&#39;Parch&#39;))</span>
+<span class="s1">    dataset = dataset.withColumn(&#39;Alone&#39;, lit(0))</span>
+<span class="s1">    dataset = dataset.withColumn(</span>
+<span class="s1">        &quot;Alone&quot;,</span>
+<span class="s1">        when(dataset[&quot;Family_Size&quot;] == 0, 1).otherwise(dataset[&quot;Alone&quot;]))</span>
+<span class="s1">    datasets_list[index] = dataset</span>
+
+
+<span class="s1">text_fields = [&quot;Sex&quot;, &quot;Embarked&quot;, &quot;Initial&quot;]</span>
+<span class="s1">for column in text_fields:</span>
+<span class="s1">    for index, dataset in enumerate(datasets_list):</span>
+<span class="s1">        dataset = StringIndexer(</span>
+<span class="s1">            inputCol=column, outputCol=column+&quot;_index&quot;).</span><span class="se">\</span>
+<span class="s1">                fit(dataset).</span><span class="se">\</span>
+<span class="s1">                transform(dataset)</span>
+<span class="s1">        datasets_list[index] = dataset</span>
+
+
+<span class="s1">non_required_columns = [&quot;Name&quot;, &quot;Ticket&quot;, &quot;Cabin&quot;,</span>
+<span class="s1">                        &quot;Embarked&quot;, &quot;Sex&quot;, &quot;Initial&quot;]</span>
+<span class="s1">for index, dataset in enumerate(datasets_list):</span>
+<span class="s1">    dataset = dataset.drop(*non_required_columns)</span>
+<span class="s1">    datasets_list[index] = dataset</span>
+
+
+<span class="s1">training_df = datasets_list[TRAINING_DF_INDEX]</span>
+<span class="s1">testing_df = datasets_list[TESTING_DF_INDEX]</span>
+
+<span class="s1">assembler = VectorAssembler(</span>
+<span class="s1">    inputCols=training_df.columns[1:],</span>
+<span class="s1">    outputCol=&quot;features&quot;)</span>
 <span class="s1">assembler.setHandleInvalid(&#39;skip&#39;)</span>
 
 <span class="s1">features_training = assembler.transform(training_df)</span>
-<span class="s1">(features_training, features_evaluation) = features_training.randomSplit([0.1, 0.9], seed=11)</span>
-<span class="s1"># features_evaluation = None</span>
+<span class="s1">(features_training, features_evaluation) =</span><span class="se">\</span>
+<span class="s1">    features_training.randomSplit([0.1, 0.9], seed=11)</span>
 <span class="s1">features_testing = assembler.transform(testing_df)</span>
 <span class="s1">&#39;&#39;&#39;</span>
 
@@ -1019,7 +1052,7 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="n">model_builder</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span>
     <span class="s2">&quot;titanic_training&quot;</span><span class="p">,</span> <span class="s2">&quot;titanic_testing&quot;</span><span class="p">,</span> <span class="n">preprocessing_code</span><span class="p">,</span>
-    <span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="s2">&quot;dt&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;rf&quot;</span><span class="p">,</span> <span class="s2">&quot;nb&quot;</span><span class="p">,</span> <span class="s2">&quot;svc&quot;</span><span class="p">]))</span>
+    <span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="s2">&quot;dt&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;rf&quot;</span><span class="p">,</span> <span class="s2">&quot;nb&quot;</span><span class="p">))</span>
 </code></pre></div>
                 
               
