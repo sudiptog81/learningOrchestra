@@ -980,30 +980,38 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="n">database_api</span><span class="o">.</span><span class="n">read_resume_files</span><span class="p">())</span>
 
+
+<span class="n">projection</span> <span class="o">=</span> <span class="n">Projection</span><span class="p">()</span>
+<span class="n">non_required_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Ticket&quot;</span><span class="p">,</span> <span class="s2">&quot;Cabin&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;Embarked&quot;</span><span class="p">,</span> <span class="s2">&quot;Sex&quot;</span><span class="p">,</span> <span class="s2">&quot;Initial&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">projection</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;titanic_training&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;titanic_training_projection&quot;</span><span class="p">,</span>
+                        <span class="n">non_required_columns</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">projection</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;titanic_testing&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;titanic_testing_projection&quot;</span><span class="p">,</span>
+                        <span class="n">non_required_columns</span><span class="p">))</span>
+
+
 <span class="n">data_type_handler</span> <span class="o">=</span> <span class="n">DataTypeHandler</span><span class="p">()</span>
+<span class="n">type_fields</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Age&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Fare&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Parch&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PassengerId&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pclass&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SibSp&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span>
+<span class="p">}</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">data_type_handler</span><span class="o">.</span><span class="n">change_file_type</span><span class="p">(</span>
-    <span class="s2">&quot;titanic_training&quot;</span><span class="p">,</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;Age&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Fare&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Parch&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;PassengerId&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Pclass&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;SibSp&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Survived&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span>
-    <span class="p">}))</span>
+    <span class="s2">&quot;titanic_testing_projection&quot;</span><span class="p">,</span>
+    <span class="n">type_fields</span><span class="p">))</span>
+
+<span class="n">type_fields</span><span class="p">[</span><span class="s2">&quot;Survived&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;number&quot;</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">data_type_handler</span><span class="o">.</span><span class="n">change_file_type</span><span class="p">(</span>
-    <span class="s2">&quot;titanic_testing&quot;</span><span class="p">,</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;Age&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Fare&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Parch&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;PassengerId&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Pclass&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;SibSp&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span>
-    <span class="p">}))</span>
+    <span class="s2">&quot;titanic_training_projection&quot;</span><span class="p">,</span>
+    <span class="n">type_fields</span><span class="p">))</span>
+
 
 <span class="n">preprocessing_code</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">from pyspark.ml import Pipeline</span>
@@ -1078,13 +1086,6 @@
 <span class="s1">        datasets_list[index] = dataset</span>
 
 
-<span class="s1">non_required_columns = [&quot;Name&quot;, &quot;Ticket&quot;, &quot;Cabin&quot;,</span>
-<span class="s1">                        &quot;Embarked&quot;, &quot;Sex&quot;, &quot;Initial&quot;]</span>
-<span class="s1">for index, dataset in enumerate(datasets_list):</span>
-<span class="s1">    dataset = dataset.drop(*non_required_columns)</span>
-<span class="s1">    datasets_list[index] = dataset</span>
-
-
 <span class="s1">training_df = datasets_list[TRAINING_DF_INDEX]</span>
 <span class="s1">testing_df = datasets_list[TESTING_DF_INDEX]</span>
 
@@ -1102,8 +1103,10 @@
 <span class="n">model_builder</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">model_builder</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span>
-    <span class="s2">&quot;titanic_training&quot;</span><span class="p">,</span> <span class="s2">&quot;titanic_testing&quot;</span><span class="p">,</span> <span class="n">preprocessing_code</span><span class="p">,</span>
-    <span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="s2">&quot;dt&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;rf&quot;</span><span class="p">,</span> <span class="s2">&quot;nb&quot;</span><span class="p">))</span>
+    <span class="s2">&quot;titanic_training_projection&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;titanic_testing_projection&quot;</span><span class="p">,</span>
+    <span class="n">preprocessing_code</span><span class="p">,</span>
+    <span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="s2">&quot;dt&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;rf&quot;</span><span class="p">,</span> <span class="s2">&quot;nb&quot;</span><span class="p">]))</span>
 </code></pre></div>
                 
               
