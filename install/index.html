@@ -441,6 +441,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../t_sne/" title="t-SNE" class="md-nav__link">
+      t-SNE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../model_builder/" title="Model Builder" class="md-nav__link">
       Model Builder
     </a>
@@ -527,20 +539,31 @@
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>Linux hosts</li>
-<li><a href="https://docs.docker.com/engine/install/">Docker Engine</a> installed in all instances of your cluster</li>
-<li>cluster configured in swarm mode, more details in <a href="https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/">swarm documentation</a></li>
-<li><a href="https://docs.docker.com/compose/install/">Docker Compose</a> installed in manager instance of your cluster</li>
-<li>Ensure wich your cluster environment has no network traffic block, as firewalls rules in your network or owner firewall in linux hosts, case has firewalls or other blockers, insert learningOrchestra in blocked exceptions, as example, in Google Cloud Platform the VMs must be with allow_http and allow_https firewall rules allowed in each VM configuration.</li>
+<li><a href="https://docs.docker.com/engine/install/">Docker Engine</a> installed in all 
+instances of your cluster</li>
+<li>cluster configured in swarm mode, more details in 
+<a href="https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/">swarm documentation</a></li>
+<li><a href="https://docs.docker.com/compose/install/">Docker Compose</a> installed in 
+manager instance of your cluster</li>
+<li>Ensure wich your cluster environment has no network traffic block, as 
+firewalls rules in your network or owner firewall in linux hosts, case has 
+firewalls or other blockers, insert learningOrchestra in blocked exceptions, as
+ example, in Google Cloud Platform the VMs must be with allow_http and 
+ allow_https firewall rules allowed in each VM configuration.</li>
 </ul>
 <h2 id="deploy">Deploy</h2>
-<p>Ensure wich you location path is in project root (./learningOrchestra), in sequence, run the command bellow in manager instance of swarm cluster to deploy the learningOrchestra:
+<p>Ensure wich you location path is in project root (./learningOrchestra), in 
+sequence, run the command bellow in manager instance of swarm cluster to deploy
+ the learningOrchestra:
 <div class="highlight"><pre><span></span><code>sudo ./run.sh
 </code></pre></div>
-If all things happen good, the learningOrchestra has been deployed in your swarm cluster, congrulations! 🥳 👏👏</p>
+If all things happen good, the learningOrchestra has been deployed in your 
+swarm cluster, congrulations! 🥳 👏👏</p>
 <h2 id="learningorchestra-cluster-state">learningOrchestra cluster state</h2>
 <p>There are two web pages for cluster state visualization:</p>
 <ul>
-<li>Visualize cluster state (deployed microservices and cluster's machines) - CLUSTER_IP:8000</li>
+<li>Visualize cluster state (deployed microservices and cluster's machines) - 
+CLUSTER_IP:8000</li>
 <li>Visualize spark cluster state - CLUSTER_IP:8080</li>
 </ul>
                 

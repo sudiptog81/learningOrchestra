@@ -429,6 +429,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../t_sne/" title="t-SNE" class="md-nav__link">
+      t-SNE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../model_builder/" title="Model Builder" class="md-nav__link">
       Model Builder
     </a>
@@ -498,10 +510,13 @@
                 
                 
                 <h1 id="histogram-microservice">Histogram microservice</h1>
-<p>Microservice used to make the histogram from stored file, storing the result in a new file in MongoDB.</p>
+<p>Microservice used to make the histogram from stored file, storing the result 
+in a new file in MongoDB.</p>
 <h2 id="create-an-histogram-from-inserted-file">Create an Histogram from inserted file</h2>
 <p><code>POST CLUSTER_IP:5004/histograms/&lt;filename&gt;</code></p>
-<p>The request is sent in body, histrogram_filename is the filename to save the histogram result and fields are an array whith all fields to be maked the histogram.</p>
+<p>The request is sent in body, histrogram_filename is the filename to save the 
+histogram result and fields are an array whith all fields to be maked the 
+histogram.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;histogram_filename&quot;</span><span class="p">:</span> <span class="s2">&quot;filename_to_save_the_histogram&quot;</span><span class="p">,</span>
     <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;fields&quot;</span><span class="p">,</span> <span class="s2">&quot;from&quot;</span><span class="p">,</span> <span class="s2">&quot;filename&quot;</span><span class="p">]</span>
@@ -540,13 +555,13 @@
           </a>
         
         
-          <a href="../model_builder/" title="Model Builder" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../t_sne/" title="t-SNE" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Model Builder
+                t-SNE
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

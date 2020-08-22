@@ -385,6 +385,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../t_sne/" title="t-SNE" class="md-nav__link">
+      t-SNE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -578,7 +590,9 @@
                 
                 
                 <h1 id="model-builder-microservice">Model builder microservice</h1>
-<p>Model Builder microservice provide a REST API to create several model predictions using your own preprocessing code using a defined set of classificators. </p>
+<p>Model Builder microservice provide a REST API to create several model 
+predictions using your own preprocessing code using a defined set of 
+classificators. </p>
 <h2 id="create-prediction-model">Create prediction model</h2>
 <p><code>POST CLUSTER_IP:5002/models</code></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -606,27 +620,35 @@
 <span class="p">}</span>
 </code></pre></div></p>
 <h3 id="preprocessor_code-environment">preprocessor_code environment</h3>
-<p>The python3 preprocessing code must use the environment instances in bellow:</p>
+<p>The python 3 preprocessing code must use the environment instances in bellow:</p>
 <ul>
-<li>training_df (Instanciated): Spark Dataframe instance for trainingfilename</li>
-<li>testing_df  (Instanciated): Spark Dataframe instance for testing filename</li>
+<li>training_df (Instantiated): Spark Dataframe instance for training filename</li>
+<li>testing_df  (Instantiated): Spark Dataframe instance for testing filename</li>
 </ul>
-<p>The preprocessing code must instanciate the variables in bellow, , all intances must be transformed by pyspark VectorAssembler:</p>
+<p>The preprocessing code must instantiate the variables in bellow, all 
+instances must be transformed by pyspark VectorAssembler:</p>
 <ul>
-<li>features_training (Not Instanciated): Spark Dataframe instance for train the model</li>
-<li>features_evaluation (Not Instanciated): Spark Dataframe instance for evaluate trained model accuracy</li>
-<li>features_testing (Not Instanciated): Spark Dataframe instance for test the model</li>
+<li>features_training (Not Instantiated): Spark Dataframe instance for train 
+the model</li>
+<li>features_evaluation (Not Instantiated): Spark Dataframe instance for 
+evaluate trained model accuracy</li>
+<li>features_testing (Not Instantiated): Spark Dataframe instance for test 
+the model</li>
 </ul>
-<p>Case you don't want evaluate the model prediction, define features_evaluation as None.</p>
+<p>Case you don't want evaluate the model prediction, define features_evaluation 
+as None.</p>
 <h4 id="handy-methods">Handy methods</h4>
 <p><div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">fields_from_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">is_string</span><span class="p">)</span>
 </code></pre></div>
-This method return string or number fields as string list from a dataframe</p>
+This method return string or number fields as string list from a dataframe.</p>
 <ul>
 <li>dataframe: dataframe instance</li>
-<li>is_string: Boolean parameter, if True, the method return the string dataframe fields, otherwise, return the numbers dataframe fields.</li>
+<li>is_string: Boolean parameter, if True, the method return the string 
+dataframe fields, otherwise, return the numbers dataframe fields.</li>
 </ul>
 <h4 id="preprocessor_code-example">preprocessor_code example</h4>
+<p>This example use the 
+<a href="https://www.kaggle.com/c/titanic/overview">titanic challengue datasets</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">mean</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">split</span><span class="p">,</span>
@@ -737,7 +759,7 @@ This method return string or number fields as string list from a dataframe</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../histogram/" title="Histogram" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../t_sne/" title="t-SNE" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -746,7 +768,7 @@ This method return string or number fields as string list from a dataframe</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Histogram
+                t-SNE
               </div>
             </div>
           </a>
