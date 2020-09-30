@@ -550,34 +550,35 @@
                 <h1 id="install">Install</h1>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li>Linux hosts</li>
+<li>Linux hosts;</li>
 <li><a href="https://docs.docker.com/engine/install/">Docker Engine</a> installed in all 
-instances of your cluster</li>
+instances of your cluster;</li>
 <li>cluster configured in swarm mode, more details in 
-<a href="https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/">swarm documentation</a></li>
+<a href="https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/">swarm documentation</a>;</li>
 <li><a href="https://docs.docker.com/compose/install/">Docker Compose</a> installed in 
-manager instance of your cluster</li>
-<li>Ensure wich your cluster environment has no network traffic block, as 
+manager instance of your cluster; and</li>
+<li>Ensure which your cluster environment has no network traffic block, as 
 firewalls rules in your network or owner firewall in linux hosts, case has 
 firewalls or other blockers, insert learningOrchestra in blocked exceptions, as
  example, in Google Cloud Platform the VMs must be with allow_http and 
  allow_https firewall rules allowed in each VM configuration.</li>
 </ul>
 <h2 id="deploy">Deploy</h2>
-<p>Ensure wich you location path is in project root (./learningOrchestra), in 
-sequence, run the command bellow in manager instance of swarm cluster to deploy
- the learningOrchestra:
+<p>Ensure which your location path is in project root (./learningOrchestra), in 
+sequence, run the command bellow in manager instance of your swarm cluster to 
+deploy the learningOrchestra:
 <div class="highlight"><pre><span></span><code>sudo ./run.sh
 </code></pre></div>
 If all things happen good, the learningOrchestra has been deployed in your 
-swarm cluster, congrulations! 🥳 👏👏</p>
+swarm cluster, congrulations! 🥳 👏</p>
 <h2 id="learningorchestra-cluster-state">learningOrchestra cluster state</h2>
 <p>There are two web pages for cluster state visualization:</p>
 <ul>
 <li>Visualize cluster state (deployed microservices and cluster's machines) - 
-CLUSTER_IP:80</li>
-<li>Visualize spark cluster state - CLUSTER_IP:8080</li>
+CLUSTER_IP:80; and</li>
+<li>Visualize spark cluster state - CLUSTER_IP:8080.</li>
 </ul>
+<p>The CLUSTER_IP is an external ip of some machine of your cluster.</p>
                 
               
               

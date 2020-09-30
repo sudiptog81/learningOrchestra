@@ -632,14 +632,14 @@
                 
                 
                 <h1 id="database-api-microservice">Database API microservice</h1>
-<p>The Database API microservice create a level of abstraction through an REST 
-API to use the database, datasets are downloaded in csv and handled in json 
+<p>The Database API microservice creates a level of abstraction through an REST 
+API to use the MongoDB, dataset are downloaded in csv and handled in json 
 format, the primary key for each document is the filename field contained in 
 the sent json file from POST request.</p>
 <h2 id="gui-tool-to-handle-database-files">GUI tool to handle database files</h2>
 <p>There are GUI tools to handle database files, as example, the 
 <a href="https://nosqlbooster.com">NoSQLBooster</a> can interact with mongoDB used in 
-database, and make several tasks which are limited in 
+database, and makes several tasks which are limited in 
 learning_orchestra_client package, as schema visualization and files 
 extraction and download to formats as csv, json, you also can navigate in all 
 inserted files in easy way and visualize each row from determined file, to use 
@@ -675,7 +675,7 @@ contains a metadata file.</p>
 <ul>
 <li>fields - column names from inserted file</li>
 <li>filename - name to file identification</li>
-<li>finished - flag used to indicate if asyncronous processing from file 
+<li>finished - flag used to indicate if asynchronous processing from file 
 downloader is finished</li>
 <li>time_created - creation time of file</li>
 <li>url - url used to file download</li>
@@ -701,7 +701,8 @@ downloader is finished</li>
 </code></pre></div>
 
 <ul>
-<li>parent_filename - file filename used to make preprocessing operation</li>
+<li>parent_filename - file filename used to make a preprocess task, deriving
+this filename.</li>
 </ul>
 <h3 id="classificator-prediction-files-metadata">Classificator prediction files metadata</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -735,7 +736,7 @@ json, as {}</li>
 <p><code>POST CLUSTER_IP:5000/files</code></p>
 <p>Insert a csv into the database using the POST method, json must be contained 
 in the body of the http request.
-The inserted json must has the fields: 
+The inserted json musts has the fields: 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;key_to_document_identification&quot;</span><span class="p">,</span>
     <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://sitetojson.file/path/to/csv&quot;</span>

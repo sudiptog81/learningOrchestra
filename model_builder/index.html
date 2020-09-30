@@ -602,7 +602,7 @@
                 
                 
                 <h1 id="model-builder-microservice">Model builder microservice</h1>
-<p>Model Builder microservice provide a REST API to create several model 
+<p>Model Builder microservice provides a REST API to create several model 
 predictions using your own preprocessing code using a defined set of 
 classificators. </p>
 <h2 id="create-prediction-model">Create prediction model</h2>
@@ -637,7 +637,7 @@ classificators. </p>
 <li>training_df (Instantiated): Spark Dataframe instance for training filename</li>
 <li>testing_df  (Instantiated): Spark Dataframe instance for testing filename</li>
 </ul>
-<p>The preprocessing code must instantiate the variables in bellow, all 
+<p>The preprocessing code must instantiates the variables in bellow, all 
 instances must be transformed by pyspark VectorAssembler:</p>
 <ul>
 <li>features_training (Not Instantiated): Spark Dataframe instance for train 
@@ -652,14 +652,14 @@ as None.</p>
 <h4 id="handy-methods">Handy methods</h4>
 <p><div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">fields_from_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">is_string</span><span class="p">)</span>
 </code></pre></div>
-This method return string or number fields as string list from a dataframe.</p>
+This method returns string or number fields as string list from a dataframe.</p>
 <ul>
 <li>dataframe: dataframe instance</li>
-<li>is_string: Boolean parameter, if True, the method return the string 
-dataframe fields, otherwise, return the numbers dataframe fields.</li>
+<li>is_string: Boolean parameter, if True, the method returns the string 
+dataframe fields, otherwise, returns the numbers dataframe fields.</li>
 </ul>
 <h4 id="preprocessor_code-example">preprocessor_code example</h4>
-<p>This example use the 
+<p>This example uses the 
 <a href="https://www.kaggle.com/c/titanic/overview">titanic challengue datasets</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="p">(</span>
