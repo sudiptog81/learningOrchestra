@@ -307,6 +307,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#spark-microservice" class="md-nav__link">
+    Spark Microservice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#database-gui" class="md-nav__link">
     database GUI
   </a>
@@ -521,6 +528,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#spark-microservice" class="md-nav__link">
+    Spark Microservice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#database-gui" class="md-nav__link">
     database GUI
   </a>
@@ -569,10 +583,21 @@ Make a PCA image plot of stored files in database</li>
 <li><a href="https://riibeirogabriel.github.io/learningOrchestra/model_builder">model builder</a> - 
 Create a prediction model from preprocessed files using spark cluster</li>
 </ul>
+<h2 id="spark-microservice">Spark Microservice</h2>
+<p>The projection, t-SNE, PCA and model builder microservices use the spark 
+microservice to make your works, by default, this microservice has one instance, 
+in case of you data processing require more computing processing, you can 
+scale this microservice to earn computing power, to this, whith learningOrchestra 
+already deployed, in your master machine of you docker swarm cluster, run:</p>
+<p><div class="highlight"><pre><span></span><code>docker service scale microservice_sparkworker=NUMBER_OF_INSTANCES
+</code></pre></div>
+The NUMBER_OF_INSTANCES is the amount of spark microservice instance which you 
+desire to be created in your cluster, this number must be choosed according
+whit your cluster resources and the your task resources requirements.</p>
 <h2 id="database-gui">database GUI</h2>
 <ul>
 <li><a href="https://nosqlbooster.com">NoSQLBooster</a> - 
-MongoDB GUI to make several database tasks, as files visualization, querys, 
+MongoDB GUI makes several database tasks, as files visualization, querys, 
 projections and files extraction to formats as csv and json, read the 
 <a href="https://riibeirogabriel.github.io/learningOrchestra/database_api">database api docs</a> 
 to learn how configure this tool.</li>
