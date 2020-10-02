@@ -568,39 +568,22 @@
 </ul>
 <h2 id="microservices-rest-api">Microservices REST API</h2>
 <ul>
-<li><a href="https://riibeirogabriel.github.io/learningOrchestra/database_api">database api</a> - 
-Microservice used to download and handling files in database;</li>
-<li><a href="https://riibeirogabriel.github.io/learningOrchestra/projection">projection</a> - 
-Makes projections of stored files in database using spark cluster;</li>
-<li><a href="https://riibeirogabriel.github.io/learningOrchestra/data_type_handler">data type handler</a> - 
-Changes fields file type between number and text;</li>
-<li><a href="https://riibeirogabriel.github.io/learningOrchestra/histogram">histogram</a> - 
-Makes histograms of stored files in database;</li>
-<li><a href="https://riibeirogabriel.github.io/learningOrchestra/t_sne">t-SNE</a> - 
-Makes a t-SNE image plot of stored files in database;</li>
-<li><a href="https://riibeirogabriel.github.io/learningOrchestra/pca">PCA</a> - 
-Makes a PCA image plot of stored files in database; and</li>
-<li><a href="https://riibeirogabriel.github.io/learningOrchestra/model_builder">model builder</a> - 
-Creates a prediction model from preprocessed files using spark cluster.</li>
+<li><a href="https://riibeirogabriel.github.io/learningOrchestra/database_api">database api</a> - Microservice used to download and handling files in database;</li>
+<li><a href="https://riibeirogabriel.github.io/learningOrchestra/projection">projection</a> - Makes projections of stored files in database using spark cluster;</li>
+<li><a href="https://riibeirogabriel.github.io/learningOrchestra/data_type_handler">data type handler</a> - Changes fields file type between number and text;</li>
+<li><a href="https://riibeirogabriel.github.io/learningOrchestra/histogram">histogram</a> - Makes histograms of stored files in database;</li>
+<li><a href="https://riibeirogabriel.github.io/learningOrchestra/t_sne">t-SNE</a> - Makes a t-SNE image plot of stored files in database;</li>
+<li><a href="https://riibeirogabriel.github.io/learningOrchestra/pca">PCA</a> - Makes a PCA image plot of stored files in database; and</li>
+<li><a href="https://riibeirogabriel.github.io/learningOrchestra/model_builder">model builder</a> - Creates a prediction model from preprocessed files using spark cluster.</li>
 </ul>
 <h2 id="spark-microservice">Spark microservice</h2>
-<p>The projection, t-SNE, PCA and model builder microservices use the spark 
-microservice to make your works, by default, this microservice has one instance, 
-in case of you data processing require more computing processing, you can 
-scale this microservice to earn computing power, to this, with learningOrchestra 
-already deployed, in your master machine of you docker swarm cluster, run:</p>
+<p>The projection, t-SNE, PCA and model builder microservices use the spark microservice to make your work. By default, this microservice has only one instance. In case your data processing requires more computing processing power, you can scale this microservice to earn computing power. To do this, with learningOrchestra already deployed, in the master machine of your docker swarm cluster, run:</p>
 <p><div class="highlight"><pre><span></span><code>docker service scale microservice_sparkworker=NUMBER_OF_INSTANCES
 </code></pre></div>
-The NUMBER_OF_INSTANCES is the amount of spark microservice instance which you 
-desire to be created in your cluster, this number must be choosed according 
-with your cluster resources and the resources requirements of your task.</p>
+The <code>NUMBER_OF_INSTANCES</code> is the amount of spark microservice instances which you desire to be created in your cluster, this number must be choosen according to your cluster resources and the resource requirements of your task.</p>
 <h2 id="database-gui">Database GUI</h2>
 <ul>
-<li><a href="https://nosqlbooster.com">NoSQLBooster</a> - 
-MongoDB GUI makes several database tasks, as files visualization, queries, 
-projections and files extraction to formats as csv and json, read the 
-<a href="https://riibeirogabriel.github.io/learningOrchestra/database_api">database api docs</a> 
-to learn how configure this tool.</li>
+<li><a href="https://nosqlbooster.com">NoSQLBooster</a> - MongoDB GUI performs several database tasks, such as files visualization, queries, projections and files extraction to formats as CSV and JSON, read the database <a href="https://riibeirogabriel.github.io/learningOrchestra/database_api">api docs</a> to learn how to configure this tool.</li>
 </ul>
                 
               

@@ -454,8 +454,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#classificators_list" class="md-nav__link">
-    classificators_list
+  <a href="#list-of-classifiers" class="md-nav__link">
+    List of Classifiers
   </a>
   
 </li>
@@ -477,7 +477,7 @@
         
           <li class="md-nav__item">
   <a href="#preprocessor_code-example" class="md-nav__link">
-    preprocessor_code example
+    preprocessor_code Example
   </a>
   
 </li>
@@ -543,8 +543,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#classificators_list" class="md-nav__link">
-    classificators_list
+  <a href="#list-of-classifiers" class="md-nav__link">
+    List of Classifiers
   </a>
   
 </li>
@@ -566,7 +566,7 @@
         
           <li class="md-nav__item">
   <a href="#preprocessor_code-example" class="md-nav__link">
-    preprocessor_code example
+    preprocessor_code Example
   </a>
   
 </li>
@@ -601,10 +601,8 @@
                   
                 
                 
-                <h1 id="model-builder-microservice">Model builder microservice</h1>
-<p>Model Builder microservice provides a REST API to create several model 
-predictions using your own preprocessing code using a defined set of 
-classificators. </p>
+                <h1 id="model-builder-microservice">Model Builder Microservice</h1>
+<p>Model Builder microservice provides a REST API to create several model predictions using your own preprocessing code using a defined set of classifiers. </p>
 <h2 id="create-prediction-model">Create prediction model</h2>
 <p><code>POST CLUSTER_IP:5002/models</code></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -615,15 +613,15 @@ classificators. </p>
 <span class="p">}</span>
 </code></pre></div>
 
-<h3 id="classificators_list">classificators_list</h3>
+<h3 id="list-of-classifiers">List of Classifiers</h3>
 <ul>
-<li>"lr": LogisticRegression</li>
-<li>"dt": DecisionTreeClassifier</li>
-<li>"rf": RandomForestClassifier</li>
-<li>"gb": Gradient-boosted tree classifier</li>
-<li>"nb": NaiveBayes</li>
+<li><code>lr</code>: LogisticRegression</li>
+<li><code>dt</code>: DecisionTreeClassifier</li>
+<li><code>rf</code>: RandomForestClassifier</li>
+<li><code>gb</code>: Gradient-boosted tree classifier</li>
+<li><code>nb</code>: NaiveBayes</li>
 </ul>
-<p>to send a request with LogisticRegression and NaiveBayes classificators:
+<p>To send a request with LogisticRegression and NaiveBayes Classifiers:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;training_filename&quot;</span><span class="p">:</span> <span class="s2">&quot;training filename&quot;</span><span class="p">,</span>
     <span class="nt">&quot;test_filename&quot;</span><span class="p">:</span> <span class="s2">&quot;test filename&quot;</span><span class="p">,</span>
@@ -634,33 +632,26 @@ classificators. </p>
 <h3 id="preprocessor_code-environment">preprocessor_code environment</h3>
 <p>The python 3 preprocessing code must use the environment instances in bellow:</p>
 <ul>
-<li>training_df (Instantiated): Spark Dataframe instance for training filename</li>
-<li>testing_df  (Instantiated): Spark Dataframe instance for testing filename</li>
+<li><code>training_df</code> (Instantiated): Spark Dataframe instance training filename</li>
+<li><code>testing_df</code>  (Instantiated): Spark Dataframe instance testing filename</li>
 </ul>
-<p>The preprocessing code must instantiates the variables in bellow, all 
-instances must be transformed by pyspark VectorAssembler:</p>
+<p>The preprocessing code must instantiate the variables in below, all instances must be transformed by pyspark VectorAssembler:</p>
 <ul>
-<li>features_training (Not Instantiated): Spark Dataframe instance for train 
-the model</li>
-<li>features_evaluation (Not Instantiated): Spark Dataframe instance for 
-evaluate trained model accuracy</li>
-<li>features_testing (Not Instantiated): Spark Dataframe instance for test 
-the model</li>
+<li><code>features_training</code> (Not Instantiated): Spark Dataframe instance for train the model</li>
+<li><code>features_evaluation</code> (Not Instantiated): Spark Dataframe instance for evaluating trained model accuracy</li>
+<li><code>features_testing</code> (Not Instantiated): Spark Dataframe instance for testing the model</li>
 </ul>
-<p>Case you don't want evaluate the model prediction, define features_evaluation 
-as None.</p>
+<p>In case you don't want to evaluate the model, set <code>features_evaluation</code> as <code>None</code>.</p>
 <h4 id="handy-methods">Handy methods</h4>
 <p><div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">fields_from_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">is_string</span><span class="p">)</span>
 </code></pre></div>
-This method returns string or number fields as string list from a dataframe.</p>
+This method returns string or number fields as a string list from a DataFrame.</p>
 <ul>
-<li>dataframe: dataframe instance</li>
-<li>is_string: Boolean parameter, if True, the method returns the string 
-dataframe fields, otherwise, returns the numbers dataframe fields.</li>
+<li><code>dataframe</code>: DataFrame instance</li>
+<li><code>is_string</code>: Boolean parameter, if <code>True</code>, the method returns the string DataFrame fields, otherwise, returns the numbers DataFrame fields.</li>
 </ul>
-<h4 id="preprocessor_code-example">preprocessor_code example</h4>
-<p>This example uses the 
-<a href="https://www.kaggle.com/c/titanic/overview">titanic challengue datasets</a>.</p>
+<h4 id="preprocessor_code-example">preprocessor_code Example</h4>
+<p>This example uses the <a href="https://www.kaggle.com/c/titanic/overview">titanic challengue datasets</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">mean</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">split</span><span class="p">,</span>
