@@ -562,7 +562,6 @@
 </ul>
 <h2 id="architecture">Architecture</h2>
 <p>The architecture of learningOrchestra is a collection of microservices deployed in a cluster.</p>
-<p><img alt="architecture" src="architecture.png" /></p>
 <p>A dataset (in CSV format) can be loaded from an URL using the<a href="https://riibeirogabriel.github.io/learningOrchestra/database_api">Database API</a> microservice, which converts the dataset to JSON and later stores it in MongoDB.</p>
 <p>It is also possible to perform several preprocessing and analytical tasks using learningOrchestra's <a href="https://riibeirogabriel.github.io/learningOrchestra/usage">collection of microservices</a>.</p>
 <p>With learningOrchestra, you can build prediction models with different classifiers simultaneously using stored and preprocessed datasets with the <em>Model Builder</em> microservice. This microservice uses a <a href="https://spark.apache.org/">Spark</a> cluster to make prediction models using distributed processing. You can compare the different classification results over time to fit and increase prediction accuracy.</p>

@@ -675,11 +675,18 @@ This method returns string or number fields as a string list from a DataFrame.</
         <span class="n">regexp_extract</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">),</span> <span class="s2">&quot;([A-Za-z]+)\.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
     <span class="n">datasets_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span>
 
-
-<span class="n">misspelled_initials</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mlle&#39;</span><span class="p">,</span> <span class="s1">&#39;Mme&#39;</span><span class="p">,</span> <span class="s1">&#39;Ms&#39;</span><span class="p">,</span> <span class="s1">&#39;Dr&#39;</span><span class="p">,</span> <span class="s1">&#39;Major&#39;</span><span class="p">,</span> <span class="s1">&#39;Lady&#39;</span><span class="p">,</span> <span class="s1">&#39;Countess&#39;</span><span class="p">,</span>
-                       <span class="s1">&#39;Jonkheer&#39;</span><span class="p">,</span> <span class="s1">&#39;Col&#39;</span><span class="p">,</span> <span class="s1">&#39;Rev&#39;</span><span class="p">,</span> <span class="s1">&#39;Capt&#39;</span><span class="p">,</span> <span class="s1">&#39;Sir&#39;</span><span class="p">,</span> <span class="s1">&#39;Don&#39;</span><span class="p">]</span>
-<span class="n">correct_initials</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Miss&#39;</span><span class="p">,</span> <span class="s1">&#39;Miss&#39;</span><span class="p">,</span> <span class="s1">&#39;Miss&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;Other&#39;</span><span class="p">,</span> <span class="s1">&#39;Other&#39;</span><span class="p">,</span> <span class="s1">&#39;Other&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">]</span>
+<span class="n">misspelled_initials</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Mlle&#39;</span><span class="p">,</span> <span class="s1">&#39;Mme&#39;</span><span class="p">,</span> <span class="s1">&#39;Ms&#39;</span><span class="p">,</span> <span class="s1">&#39;Dr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Major&#39;</span><span class="p">,</span> <span class="s1">&#39;Lady&#39;</span><span class="p">,</span> <span class="s1">&#39;Countess&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Jonkheer&#39;</span><span class="p">,</span> <span class="s1">&#39;Col&#39;</span><span class="p">,</span> <span class="s1">&#39;Rev&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Capt&#39;</span><span class="p">,</span> <span class="s1">&#39;Sir&#39;</span><span class="p">,</span> <span class="s1">&#39;Don&#39;</span>
+<span class="p">]</span>
+<span class="n">correct_initials</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Miss&#39;</span><span class="p">,</span> <span class="s1">&#39;Miss&#39;</span><span class="p">,</span> <span class="s1">&#39;Miss&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Other&#39;</span><span class="p">,</span> <span class="s1">&#39;Other&#39;</span><span class="p">,</span> <span class="s1">&#39;Other&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span>
+<span class="p">]</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets_list</span><span class="p">):</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">misspelled_initials</span><span class="p">,</span> <span class="n">correct_initials</span><span class="p">)</span>
     <span class="n">datasets_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span>
@@ -724,8 +731,7 @@ This method returns string or number fields as a string list from a DataFrame.</
         <span class="n">datasets_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span>
 
 
-<span class="n">non_required_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Ticket&quot;</span><span class="p">,</span> <span class="s2">&quot;Cabin&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;Embarked&quot;</span><span class="p">,</span> <span class="s2">&quot;Sex&quot;</span><span class="p">,</span> <span class="s2">&quot;Initial&quot;</span><span class="p">]</span>
+<span class="n">non_required_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Embarked&quot;</span><span class="p">,</span> <span class="s2">&quot;Sex&quot;</span><span class="p">,</span> <span class="s2">&quot;Initial&quot;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets_list</span><span class="p">):</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="o">*</span><span class="n">non_required_columns</span><span class="p">)</span>
     <span class="n">datasets_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span>
@@ -735,13 +741,13 @@ This method returns string or number fields as a string list from a DataFrame.</
 <span class="n">testing_df</span> <span class="o">=</span> <span class="n">datasets_list</span><span class="p">[</span><span class="n">TESTING_DF_INDEX</span><span class="p">]</span>
 
 <span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span>
-    <span class="n">inputCols</span><span class="o">=</span><span class="n">training_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">inputCols</span><span class="o">=</span><span class="n">training_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:],</span>
     <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
 <span class="n">assembler</span><span class="o">.</span><span class="n">setHandleInvalid</span><span class="p">(</span><span class="s1">&#39;skip&#39;</span><span class="p">)</span>
 
 <span class="n">features_training</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">training_df</span><span class="p">)</span>
 <span class="p">(</span><span class="n">features_training</span><span class="p">,</span> <span class="n">features_evaluation</span><span class="p">)</span> <span class="o">=</span>\
-    <span class="n">features_training</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">features_training</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="mi">33</span><span class="p">)</span>
 <span class="n">features_testing</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">testing_df</span><span class="p">)</span>
 </code></pre></div>
                 
